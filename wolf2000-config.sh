@@ -502,7 +502,7 @@ do_omv3() {
   ./omv-install-3.x.sh
   printf "Einen Moment ich starte in 5Sek Wolf2000-config\n" &&
   sleep 5 &&
-  exec ./wolf2000-config.sh
+  exec wolf2000-config
 }
 
 do_omv2() {
@@ -510,7 +510,7 @@ do_omv2() {
   ./omv-install-2.x.sh
   printf "Einen Moment ich starte in 5Sek Wolf2000-config\n" &&
   sleep 5 &&
-  exec ./wolf2000-config.sh
+  exec wolf2000-config
 }
 
 do_update() {
@@ -518,7 +518,7 @@ do_update() {
   apt-get upgrade &&
   printf "Einen Moment ich starte in 5Sek Wolf2000-config\n" &&
   sleep 5 &&
-  exec ./wolf2000-config.sh
+  exec wolf2000-config
 }
 
 #
