@@ -29,7 +29,7 @@ do_about() {
 Habe mir das raspi-config hergenommen und verändert.
 Ich hoffe ihr seid zufrieden?
 Für Schäden übernehme ich Keine Haftung!
-@Wolf2000.  Test Tastatur-Einstellungen\
+@Wolf2000.\
 " 20 70 1
 }
 
@@ -292,11 +292,6 @@ disable_raspi_config_at_boot() {
     telinit q
   fi
 }
-
-
-# $1 is 0 to disable camera, 1 to enable it
-
-
 
 do_audio() {
   AUDIO_OUT=$(whiptail --menu "Choose the audio output" 20 60 10 \
