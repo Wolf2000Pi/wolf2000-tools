@@ -497,6 +497,29 @@ do_advanced_menu() {
   fi
 }
 
+do_omv3() {
+  chmod 777 omv-install-3.x.sh
+  ./omv-install-3.x.sh
+  printf "Einen Moment ich starte in 5Sek Wolf2000-config\n" &&
+  sleep 5 &&
+  exec ./wolf2000-config.sh
+}
+
+do_omv2() {
+  chmod 777 omv-install-2.x.sh
+  ./omv-install-2.x.sh
+  printf "Einen Moment ich starte in 5Sek Wolf2000-config\n" &&
+  sleep 5 &&
+  exec ./wolf2000-config.sh
+}
+
+do_update() {
+  apt-get update &&
+  apt-get upgrade &&
+  printf "Einen Moment ich starte in 5Sek Wolf2000-config\n" &&
+  sleep 5 &&
+  exec ./wolf2000-config.sh
+}
 
 #
 # Interactive use loop
@@ -508,7 +531,10 @@ while true; do
     "2 Change User Password" "Root Password ändern" \
     "3 Internationalisation Options" "Sprache-Zeit-Tastatur " \
     "4 Advanced Options" "Configure advanced settings" \
-    "5 About wolf2000-config" "Bitte Lesen" \
+	"5 Update" "Update und upgrade" \
+	"6 Openmediavault Version 2" "Installation Unter Debian Wheezy" \
+	"7 Openmediavault Version 3" "Installation Unter Debian Jessie" \
+	"8 About wolf2000-config" "Bitte Lesen" \
     3>&1 1>&2 2>&3)
   RET=$?
   if [ $RET -eq 1 ]; then
@@ -519,7 +545,10 @@ while true; do
       2\ *) do_change_pass ;;
       3\ *) do_internationalisation_menu ;;
       4\ *) do_advanced_menu ;;
-      5\ *) do_about ;;
+      5\ *) do_update ;;
+	  6\ *) do_omv2 ;;
+	  7\ *) do_omv3 ;;
+	  8\ *) do_about ;;
       *) whiptail --msgbox "Programmer error: unrecognized option" 20 60 1 ;;
     esac || whiptail --msgbox "There was an error running option $FUN" 20 60 1
   else
