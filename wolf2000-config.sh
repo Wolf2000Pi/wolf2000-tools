@@ -528,10 +528,10 @@ do_update_wolf2000() {
   chmod 777 wolf2000-config.sh omv-install-2.x.sh omv-install-3.x.sh &&
   cd /usr/bin/ &&
   rm -r omv-install-2.x.sh omv-install-3.x.sh wolf2000-config &&
-  cp wolf2000-config.sh /usr/bin/wolf2000-config &&
+  cp /root/wolf2000-tools/wolf2000-config.sh /usr/bin/wolf2000-config &&
   cp /root/wolf2000-tools/omv-install-3.x.sh /root/wolf2000-tools/omv-install-2.x.sh /usr/bin &&
   cd &&
-  exec raspi-config
+  exec wolf2000-config
 }
 
 #
