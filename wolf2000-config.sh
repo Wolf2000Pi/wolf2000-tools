@@ -29,7 +29,7 @@ do_about() {
 Habe mir das raspi-config hergenommen und verändert.
 Ich hoffe ihr seid zufrieden?
 Für Schäden übernehme ich Keine Haftung!
-@Wolf2000.\
+@Wolf2000.  Test Tastatur-Einstellungen\
 " 20 70 1
 }
 
