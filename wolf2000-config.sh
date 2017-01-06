@@ -522,9 +522,9 @@ do_update() {
 }
 
 do_update_wolf2000() {
-  rm -r wolf2000-tolls &&
+  rm -r wolf2000-tolls/ &&
   git clone https://github.com/Wolf2000Pi/wolf2000-tools.git &&
-  cd wolf2000-tools/ &&
+  cd wolf2000-tools &&
   chmod 777 wolf2000-config.sh omv-install-2.x.sh omv-install-3.x.sh &&
   cd /usr/bin/ &&
   rm -r omv-install-2.x.sh omv-install-3.x.sh wolf2000-config &&
