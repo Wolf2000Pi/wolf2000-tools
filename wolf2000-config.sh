@@ -1,6 +1,6 @@
 #!/bin/sh
 # 
-#
+#Version 3.0
 # by Wolf2000
 
 INTERACTIVE=True
