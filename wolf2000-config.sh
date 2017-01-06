@@ -1,6 +1,6 @@
 #!/bin/sh
-# 
-#Version 3.0
+# Part of Wolf2000-Tools https://github.com/Wolf2000Pi/wolf2000-tools
+# Version 3.1
 # by Wolf2000
 
 INTERACTIVE=True
@@ -500,25 +500,38 @@ do_advanced_menu() {
 do_omv3() {
   chmod 777 omv-install-3.x.sh
   omv-install-3.x.sh
-  printf "Einen Moment ich starte in 5Sek Wolf2000-config\n" &&
-  sleep 5 &&
+  printf "Einen Moment ich starte in 1Sek Wolf2000-config\n" &&
+  sleep 1 &&
   exec wolf2000-config
 }
 
 do_omv2() {
   chmod 777 omv-install-2.x.sh
   omv-install-2.x.sh
-  printf "Einen Moment ich starte in 5Sek Wolf2000-config\n" &&
-  sleep 5 &&
+  printf "Einen Moment ich starte in 1Sek Wolf2000-config\n" &&
+  sleep 1 &&
   exec wolf2000-config
 }
 
 do_update() {
   apt-get update &&
   apt-get upgrade &&
-  printf "Einen Moment ich starte in 5Sek Wolf2000-config\n" &&
-  sleep 5 &&
+  printf "Einen Moment ich starte in 1Sek Wolf2000-config\n" &&
+  sleep 1 &&
   exec wolf2000-config
+}
+
+do_update_wolf2000() {
+  rm -r /root/wolf2000-tolls
+  git clone https://github.com/Wolf2000Pi/wolf2000-tools.git &&
+  cd wolf2000-tools &&
+  chmod 777 wolf2000-config.sh omv-install-2.x.sh omv-install-3.x.sh &&
+  cd /usr/bin/ &&
+  rm -r omv-install-2.x.sh omv-install-3.x.sh wolf2000-config &&
+  cp wolf2000-config.sh /usr/bin/wolf2000-config &&
+  cp /root/wolf2000-tools/omv-install-3.x.sh /root/wolf2000-tools/omv-install-2.x.sh /usr/bin &&
+  cd &&
+  exec raspi-config
 }
 
 #
@@ -527,14 +540,15 @@ do_update() {
 calc_wt_size
 while true; do
   FUN=$(whiptail --title "Banana Pi Software Configuration Tool (Wolf2000-config)" --menu "Setup Options" $WT_HEIGHT $WT_WIDTH $WT_MENU_HEIGHT --cancel-button Finish --ok-button Select \
-    "1 Expand Filesystem" "Stellt sicher,dass die ganze SD-Kartenspeicher für das Betriebssystem verfügbar ist" \
+    "1 Expand Filesystem" "Stellt sicher,dass die ganze SD-Kartenspeicher für das OS verfügbar ist" \
     "2 Change User Password" "Root Password ändern" \
     "3 Internationalisation Options" "Sprache-Zeit-Tastatur " \
     "4 Advanced Options" "Configure advanced settings" \
-	"5 Update" "Update und upgrade" \
+	"5 Update System" "Update und upgrade" \
 	"6 Openmediavault Version 2" "Installation Unter Debian Wheezy" \
 	"7 Openmediavault Version 3" "Installation Unter Debian Jessie" \
 	"8 About wolf2000-config" "Bitte Lesen" \
+	"9 Update" "Wolf2000-Tools Updaten" \
     3>&1 1>&2 2>&3)
   RET=$?
   if [ $RET -eq 1 ]; then
@@ -549,6 +563,7 @@ while true; do
 	  6\ *) do_omv2 ;;
 	  7\ *) do_omv3 ;;
 	  8\ *) do_about ;;
+	  9\ *) do_update_wolf2000 ;;
       *) whiptail --msgbox "Programmer error: unrecognized option" 20 60 1 ;;
     esac || whiptail --msgbox "There was an error running option $FUN" 20 60 1
   else
