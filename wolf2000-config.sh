@@ -499,7 +499,7 @@ do_advanced_menu() {
 
 do_omv3() {
   chmod 777 omv-install-3.x.sh
-  ./omv-install-3.x.sh
+  omv-install-3.x.sh
   printf "Einen Moment ich starte in 5Sek Wolf2000-config\n" &&
   sleep 5 &&
   exec wolf2000-config
@@ -507,7 +507,7 @@ do_omv3() {
 
 do_omv2() {
   chmod 777 omv-install-2.x.sh
-  ./omv-install-2.x.sh
+  omv-install-2.x.sh
   printf "Einen Moment ich starte in 5Sek Wolf2000-config\n" &&
   sleep 5 &&
   exec wolf2000-config
