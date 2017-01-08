@@ -6,7 +6,7 @@
 INTERACTIVE=True
 ASK_TO_REBOOT=0
 BLACKLIST=/etc/modprobe.d/raspi-blacklist.conf
-#CONFIG=/boot/config.txt
+CONFIG=/boot/config.txt
 
 calc_wt_size() {
   # NOTE: it's tempting to redirect stderr to /dev/null, so supress error 
