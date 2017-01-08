@@ -24,8 +24,8 @@ cp deinstall-wolf2000-tools.sh /root/ &&
 sleep 1
 cp wolf2000-config.sh /usr/bin/wolf2000-config &&
 sleep 1
-cp /root/wolf2000-tools/omv-install-3.x.sh /root/wolf2000-tools/omv-install-2.x.sh /usr/bin &&
-sleep 1
+cp omv-install-3.x.sh /root/wolf2000-tools/omv-install-2.x.sh /usr/bin &&
+sleep 1 
 cd &&
 sleep 1
 chmod 777 deinstall-wolf2000-tools.sh &&
