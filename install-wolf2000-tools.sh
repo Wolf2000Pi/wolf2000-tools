@@ -28,6 +28,7 @@ cp /root/wolf2000-tools/omv-install-3.x.sh /root/wolf2000-tools/omv-install-2.x.
 sleep 1
 cd &&
 sleep 1
+chmod 777 deinstall-wolf2000-tools.sh &&
 wolf2000-config
 echo
 echo
