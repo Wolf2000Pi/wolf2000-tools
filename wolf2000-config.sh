@@ -33,87 +33,6 @@ Für Schäden übernehme ich Keine Haftung!
 " 20 70 1
 }
 
-do_expand_rootfs() {
-  if ! [ -h /dev/root ]; then
-    whiptail --msgbox "/dev/root does not exist or is not a symlink. Don't know how to expand" 20 60 2
-    return 0
-  fi
-
-  ROOT_PART=$(readlink /dev/root)
-  PART_NUM=${ROOT_PART#mmcblk0p}
-  if [ "$PART_NUM" = "$ROOT_PART" ]; then
-    whiptail --msgbox "/dev/root is not an SD card. Don't know how to expand" 20 60 2
-    return 0
-  fi
-
-  # NOTE: the NOOBS partition layout confuses parted. For now, let's only 
-  # agree to work with a sufficiently simple partition layout
-  if [ "$PART_NUM" -ne 2 ]; then
-    whiptail --msgbox "Your partition layout is not currently supported by this tool. You are probably using NOOBS, in which case your root filesystem is already expanded anyway." 20 60 2
-    return 0
-  fi
-
-  LAST_PART_NUM=$(parted /dev/mmcblk0 -ms unit s p | tail -n 1 | cut -f 1 -d:)
-
-  if [ "$LAST_PART_NUM" != "$PART_NUM" ]; then
-    whiptail --msgbox "/dev/root is not the last partition. Don't know how to expand" 20 60 2
-    return 0
-  fi
-
-  # Get the starting offset of the root partition
-  PART_START=$(parted /dev/mmcblk0 -ms unit s p | grep "^${PART_NUM}" | cut -f 2 -d:)
-  [ "$PART_START" ] || return 1
-  # Return value will likely be error for fdisk as it fails to reload the
-  # partition table because the root fs is mounted
-  fdisk /dev/mmcblk0 <<EOF
-p
-d
-$PART_NUM
-n
-p
-$PART_NUM
-$PART_START
-
-p
-w
-EOF
-  ASK_TO_REBOOT=1
-
-  # now set up an init.d script
-cat <<\EOF > /etc/init.d/resize2fs_once &&
-#!/bin/sh
-### BEGIN INIT INFO
-# Provides:          resize2fs_once
-# Required-Start:
-# Required-Stop:
-# Default-Start: 2 3 4 5 S
-# Default-Stop:
-# Short-Description: Resize the root filesystem to fill partition
-# Description:
-### END INIT INFO
-
-. /lib/lsb/init-functions
-
-case "$1" in
-  start)
-    log_daemon_msg "Starting resize2fs_once" &&
-    resize2fs /dev/root &&
-    rm /etc/init.d/resize2fs_once &&
-    update-rc.d resize2fs_once remove &&
-    log_end_msg $?
-    ;;
-  *)
-    echo "Usage: $0 start" >&2
-    exit 3
-    ;;
-esac
-EOF
-  chmod +x /etc/init.d/resize2fs_once &&
-  update-rc.d resize2fs_once defaults &&
-  if [ "$INTERACTIVE" = True ]; then
-    whiptail --msgbox "Root partition has been resized.\nThe filesystem will be enlarged upon the next reboot" 20 60 2
-  fi
-}
 
 set_config_var() {
   lua - "$1" "$2" "$3" <<EOF > "$3.bak"
@@ -535,30 +454,28 @@ do_update_wolf2000() {
 calc_wt_size
 while true; do
   FUN=$(whiptail --title "Banana Pi Software Configuration Tool (Wolf2000-config)" --menu "Setup Options" $WT_HEIGHT $WT_WIDTH $WT_MENU_HEIGHT --cancel-button Finish --ok-button Select \
-    "1 Expand Filesystem" "Stellt sicher,dass die ganze SD-Kartenspeicher für das OS verfügbar ist" \
-    "2 Change User Password" "Root Password ändern" \
-    "3 Internationalisation Options" "Sprache-Zeit-Tastatur " \
-    "4 Advanced Options" "Configure advanced settings" \
-	"5 Update System" "Update und upgrade" \
-	"6 Openmediavault Version 2" "Installation Unter Debian Wheezy" \
-	"7 Openmediavault Version 3" "Installation Unter Debian Jessie" \
-	"8 About wolf2000-config" "Bitte Lesen" \
-	"9 Update" "Wolf2000-Tools Updaten" \
+    "1 Change User Password" "Root Password ändern" \
+    "2 Internationalisation Options" "Sprache-Zeit-Tastatur " \
+    "3 Advanced Options" "Configure advanced settings" \
+	"4 Update System" "Update und upgrade" \
+	"5 Openmediavault Version 2" "Installation Unter Debian Wheezy" \
+	"6 Openmediavault Version 3" "Installation Unter Debian Jessie" \
+	"7 About wolf2000-config" "Bitte Lesen" \
+	"8 Update" "Wolf2000-Tools Updaten" \
     3>&1 1>&2 2>&3)
   RET=$?
   if [ $RET -eq 1 ]; then
     do_finish
   elif [ $RET -eq 0 ]; then
     case "$FUN" in
-      1\ *) do_expand_rootfs ;;
-      2\ *) do_change_pass ;;
-      3\ *) do_internationalisation_menu ;;
-      4\ *) do_advanced_menu ;;
-      5\ *) do_update ;;
-	  6\ *) do_omv2 ;;
-	  7\ *) do_omv3 ;;
-	  8\ *) do_about ;;
-	  9\ *) do_update_wolf2000 ;;
+      1\ *) do_change_pass ;;
+      2\ *) do_internationalisation_menu ;;
+      3\ *) do_advanced_menu ;;
+      4\ *) do_update ;;
+	  5\ *) do_omv2 ;;
+	  6\ *) do_omv3 ;;
+	  7\ *) do_about ;;
+	  8\ *) do_update_wolf2000 ;;
       *) whiptail --msgbox "Programmer error: unrecognized option" 20 60 1 ;;
     esac || whiptail --msgbox "There was an error running option $FUN" 20 60 1
   else
