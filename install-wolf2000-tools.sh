@@ -18,7 +18,7 @@ if [ "$answer" != "n" ]
 sleep 1
 cd /root/wolf2000-tools &&
 sleep 1
-chmod 777 wolf2000-config.sh omv-install-2.x.sh omv-install-3.x.sh deinstall-wolf2000-tools.sh install-wolf2000-tools.sh &&
+chmod 777 wolf2000-config.sh omv-install-2.x.sh omv-install-3.x.sh &&
 sleep 1
 cp deinstall-wolf2000-tools.sh /root/ &&
 sleep 1
@@ -29,6 +29,8 @@ sleep 1
 cd &&
 sleep 1
 chmod 777 deinstall-wolf2000-tools.sh &&
+sleep 1
+cd &&
 wolf2000-config
 echo
 echo
