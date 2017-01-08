@@ -1,8 +1,8 @@
-# wolf2000-tools
+# Scripts
+Scripts for Debian Image
 
-Das Wolf2000-tools ist ein Tool für die wichtigsten Einstellung der Banana Pi.
-Kann aber auch auf einen Linux Pc laufen! (außer  Expand Filesystem)
-Es gibt auch eine Möglichkeit: 
-Openmediavault zu installieren das bis auf ein bar fragen selbstständig installiert.
+Copy both files into /usr/sbin/
+chmod +x /usr/sbin/config
+chmod +x /usr/sbin/resize
 
-Bei weitere Fragen:  https://forum-bpi.de/portal
+then run config
