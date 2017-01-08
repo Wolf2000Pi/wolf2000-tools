@@ -26,7 +26,7 @@ cp /root/wolf2000-tools/omv-install-3.x.sh /root/wolf2000-tools/omv-install-2.x.
 sleep 1
 cd &&
 sleep 1
-cp /root/wolf2000-tools/deinstall-wolf2000-tools.sh /root/ &&
+cp /root/wolf2000-tools/deinstall-wolf2000-tools.sh / &&
 sleep 1
 cd &&
 sleep 1
