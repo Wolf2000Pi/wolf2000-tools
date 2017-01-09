@@ -14,11 +14,7 @@ read answer
 echo  Ihre Antwort war: $answer
 # if [ "$answer" = "j" ]
 if [ "$answer" != "n" ]
- then git clone https://github.com/Wolf2000Pi/wolf2000-tools.git &&
-sleep 1
-cd /root/wolf2000-tools &&
-sleep 1
-chmod 777 wolf2000-config.sh omv-install-2.x.sh omv-install-3.x.sh &&
+ then chmod 777 wolf2000-config.sh omv-install-2.x.sh omv-install-3.x.sh &&
 sleep 1
 cp deinstall-wolf2000-tools.sh /root/ &&
 sleep 1
