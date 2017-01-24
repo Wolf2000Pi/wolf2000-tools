@@ -448,6 +448,10 @@ do_update_wolf2000() {
   exec wolf2000-config
 }
 
+do_resize() {
+cp /root/wolf2000-tools/resize2start /etc/cron.d/
+exec resize
+}
 #
 # Interactive use loop
 #
