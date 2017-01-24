@@ -17,8 +17,7 @@ __EOF__
 
 sync
 touch /root/.resize
-echo "Ok, Partition resized, please reboot now"
-echo "Once the reboot is completed please run this script again"
+echo "Ok, Partition wird vergrßert, Bitte machen sie einen reboot"
 }
 
 resize_fs() {
@@ -36,7 +35,4 @@ resize_fs
 else
 fdisk_first
 fi
-
-#cd /etc/cron.d/
-#rm -r resize2start
 

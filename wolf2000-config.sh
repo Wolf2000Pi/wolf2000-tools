@@ -1,6 +1,6 @@
 #!/bin/sh
 # Part of Wolf2000-Tools https://github.com/Wolf2000Pi/wolf2000-tools
-# Version 3.1
+# Version 3.9
 # by Wolf2000
 
 INTERACTIVE=True
@@ -466,7 +466,7 @@ while true; do
 	"6 Openmediavault Version 3" "Installation Unter Debian Jessie" \
 	"7 About wolf2000-config" "Bitte Lesen" \
 	"8 Update" "Wolf2000-Tools Updaten" \
-    "9 Resize" "Speicher vergößern" \
+    "9 Resize" "Speicher vergößern für Images mit zwei Partionen" \
     3>&1 1>&2 2>&3)
   RET=$?
   if [ $RET -eq 1 ]; then

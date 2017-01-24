@@ -7,7 +7,7 @@ echo -e "\033[36m Author:     Wolf2000\033[0m"
 echo -e "\033[36m Version:         1.0\033[0m"
 echo -e "\033[36m https://forum-bpi.de\033[0m"
 echo
-echo -e "\033[32m Wolle sie Wolf2000-Tools installieren\033[0m"
+echo -e "\033[32m Wollen sie Wolf2000-Tools installieren\033[0m"
 echo -e "\033[32m Ihre Antwort, n/j:\033[0m"
 read answer
 #echo Das installieren wurde abgebrochen
