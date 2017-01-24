@@ -35,5 +35,5 @@ else
 fdisk_first
 fi
 
-cd /etc/cron.d/
-rm -r resize2start
+#cd /etc/cron.d/
+#rm -r resize2start
