@@ -466,6 +466,7 @@ while true; do
 	"6 Openmediavault Version 3" "Installation Unter Debian Jessie" \
 	"7 About wolf2000-config" "Bitte Lesen" \
 	"8 Update" "Wolf2000-Tools Updaten" \
+    "9 Resize" "Speicher vergößern" \
     3>&1 1>&2 2>&3)
   RET=$?
   if [ $RET -eq 1 ]; then
@@ -480,6 +481,7 @@ while true; do
 	  6\ *) do_omv3 ;;
 	  7\ *) do_about ;;
 	  8\ *) do_update_wolf2000 ;;
+	  9\ *) do_resize ;;
       *) whiptail --msgbox "Programmer error: unrecognized option" 20 60 1 ;;
     esac || whiptail --msgbox "There was an error running option $FUN" 20 60 1
   else
