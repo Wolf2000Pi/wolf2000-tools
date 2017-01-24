@@ -17,7 +17,7 @@ if [ "$answer" != "n" ]
  then rm -r wolf2000-tools && 
  rm -r deinstall-wolf2000-tools.sh &&
  cd /usr/bin/ && 
- rm -r omv-install-2.x.sh omv-install-3.x.sh wolf2000-config
+ rm -r omv-install-2.x.sh omv-install-3.x.sh wolf2000-config resize
 echo
 echo
 echo -e "\033[32m Das wars Wolf2000-Tools ist Deinstalliert\033[0m"
