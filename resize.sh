@@ -17,7 +17,7 @@ __EOF__
 
 sync
 touch /root/.resize
-echo "Ok, Partition wird vergrßert, Bitte machen sie einen reboot"
+echo "Ok, Partition wird vergrößert, Bitte machen sie einen reboot"
 }
 
 resize_fs() {
