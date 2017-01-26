@@ -33,6 +33,8 @@ if [ -f /root/.resizea ]; then
 resizea_fs
 else
 fdisk_first
+cd /etc/cron.d/
+rm -r resizea2start
 fi
 
 #cd /etc/cron.d/

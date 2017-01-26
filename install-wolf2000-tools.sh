@@ -14,7 +14,7 @@ read answer
 echo  Ihre Antwort war: $answer
 # if [ "$answer" = "j" ]
 if [ "$answer" != "n" ]
- then chmod 777 wolf2000-config.sh omv-install-2.x.sh omv-install-3.x.sh resize.sh &&
+ then chmod 777 wolf2000-config.sh omv-install-2.x.sh omv-install-3.x.sh resize.sh resizea.sh &&
 sleep 1
 cp deinstall-wolf2000-tools.sh /root/ &&
 sleep 1
@@ -25,6 +25,8 @@ sleep 1
 cp omv-install-2.x.sh /usr/bin/omv-install-3.x.sh &&
 sleep 1 
 cp resize.sh /usr/bin/resize
+sleep 1
+cp resizea.sh /usr/bin/resizea
 sleep 1
 cd &&
 sleep 1
