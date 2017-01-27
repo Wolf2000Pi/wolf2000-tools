@@ -26,16 +26,13 @@ echo "Activating the new size"
 resize2fs /dev/mmcblk0p1 >> /dev/null
 echo "Done!"
 echo "Enjoy your new space!"
-#rm -rf /root/.resizea
+cd /etc/cron.d/
+rm -r resize2start
 }
 
 if [ -f /root/.resizea ]; then
 resizea_fs
 else
 fdisk_first
-cd /etc/cron.d/
-#rm -r resizea2start
 fi
 
-#cd /etc/cron.d/
-#rm -r resize2start
