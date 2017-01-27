@@ -27,7 +27,7 @@ resize2fs /dev/mmcblk0p1 >> /dev/null
 echo "Done!"
 echo "Enjoy your new space!"
 cd /etc/cron.d/
-rm -r resize2start
+rm -r resizea2start
 }
 
 if [ -f /root/.resizea ]; then
