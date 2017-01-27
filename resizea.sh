@@ -26,7 +26,7 @@ echo "Activating the new size"
 resize2fs /dev/mmcblk0p1 >> /dev/null
 echo "Done!"
 echo "Enjoy your new space!"
-rm -rf /root/.resizea
+#rm -rf /root/.resizea
 }
 
 if [ -f /root/.resizea ]; then
