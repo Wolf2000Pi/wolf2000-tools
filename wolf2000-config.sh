@@ -472,8 +472,8 @@ while true; do
 	"6 Openmediavault Version 3" "Installation Unter Debian Jessie" \
 	"7 About wolf2000-config" "Bitte Lesen" \
 	"8 Update" "Wolf2000-Tools Updaten" \
-    "9 Resize 1" "Speicher vergößern für Images mit zwei Partionen" \
-   "10 Resize 2" "Speicher vergößern für Images mit einer Partion" \
+    "9 Resize 2" "Speicher vergößern für Images mit zwei Partionen" \
+   "10 Resize 1" "Speicher vergößern für Images mit einer Partion" \
     3>&1 1>&2 2>&3)
   RET=$?
   if [ $RET -eq 1 ]; then
