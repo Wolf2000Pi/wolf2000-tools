@@ -412,7 +412,7 @@ do_advanced_menu() {
 }
 
 do_omv3() {
-  chmod 777 omv-install-3.x.sh
+#  chmod +x omv-install-3.x.sh
   omv-install-3.x.sh
   printf "Einen Moment ich starte in 1Sek Wolf2000-config\n" &&
   sleep 1 &&
@@ -420,7 +420,7 @@ do_omv3() {
 }
 
 do_omv2() {
-  chmod 777 omv-install-2.x.sh
+#  chmod +x omv-install-2.x.sh
   omv-install-2.x.sh
   printf "Einen Moment ich starte in 1Sek Wolf2000-config\n" &&
   sleep 1 &&
@@ -439,7 +439,7 @@ do_update_wolf2000() {
   rm -r /root/wolf2000-tools/ &&
   git clone https://github.com/Wolf2000Pi/wolf2000-tools.git &&
   cd /root/wolf2000-tools &&
-  chmod 777 wolf2000-config.sh omv-install-2.x.sh omv-install-3.x.sh &&
+  chmod +x wolf2000-config.sh omv-install-2.x.sh omv-install-3.x.sh &&
   cd /usr/bin/ &&
   rm -r omv-install-2.x.sh omv-install-3.x.sh wolf2000-config &&
   cp /root/wolf2000-tools/wolf2000-config.sh /usr/bin/wolf2000-config &&
