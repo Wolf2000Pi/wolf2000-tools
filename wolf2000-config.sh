@@ -516,8 +516,8 @@ while true; do
 	  9\ *) do_resize ;;
 	 10\ *) do_resizea ;;
 	 11\ *) do_Openmediavault_menu ;;
-      *) whiptail --msgbox "Programmer error: unrecognized option" 20 60 1 ;;
-    esac || whiptail --msgbox "There was an error running option $FUN" 20 60 1
+      *) whiptail --msgbox "Programmer error: unrecognized option" 20 70 1 ;;
+    esac || whiptail --msgbox "There was an error running option $FUN" 20 70 1
   else
     exit 1
   fi
