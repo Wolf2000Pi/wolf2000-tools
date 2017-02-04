@@ -98,11 +98,12 @@ do_change_timezone() {
 
 do_change_hostname() {
   whiptail --msgbox "\
-Please note: RFCs mandate that a hostname's labels \
-may contain only the ASCII letters 'a' through 'z' (case-insensitive), 
-the digits '0' through '9', and the hyphen.
-Hostname labels cannot begin or end with a hyphen. 
-No other symbols, punctuation characters, or blank spaces are permitted.\
+Bitte beachten Sie: Das der Hostname!
+Nur die ASCII-Buchstaben "a" bis "z" enthalten (Groß-und Kleinschreibung),
+Die Ziffern '0' bis '9' und der Bindestrich.
+Hostnamen-Labels können nicht mit einem Bindestrich beginnen oder enden.
+Es sind keine anderen Symbole, Interpunktionszeichen oder Leerzeichen zulässig. 
+\
 " 20 70 1
 
   CURRENT_HOSTNAME=`cat /etc/hostname | tr -d " \t\n\r"`
