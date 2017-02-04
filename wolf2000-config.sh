@@ -392,6 +392,25 @@ do_internationalisation_menu() {
   fi
 }
 
+do_Openmediavault_menu() {
+  FUN=$(whiptail --title "Banana Pi Software Configuration Tool (Wolf2000-config)" --menu "Openmediavault Optionen" $WT_HEIGHT $WT_WIDTH $WT_MENU_HEIGHT --cancel-button Back --ok-button Select \
+    "O1 Openmediavault Version 2" "Installation Unter Debian Wheezy" \
+    "O2 Openmediavault Version 3" "Installation Unter Debian Jessie" \
+    "O3 Openmediavault Plugins" "N.A." \
+    3>&1 1>&2 2>&3)
+  RET=$?
+  if [ $RET -eq 1 ]; then
+    return 0
+  elif [ $RET -eq 0 ]; then
+    case "$FUN" in
+      O1\ *) do_omv2 ;;
+      O2\ *) do_omv3 ;;
+      O3\ *) do_configure_keyboard ;;
+      *) whiptail --msgbox "Programmer error: unrecognized option" 20 60 1 ;;
+    esac || whiptail --msgbox "There was an error running option $FUN" 20 60 1
+  fi
+}
+
 do_advanced_menu() {
   FUN=$(whiptail --title "Banana Pi Software Configuration Tool (Wolf2000-config)" --menu "Advanced Options" $WT_HEIGHT $WT_WIDTH $WT_MENU_HEIGHT --cancel-button Back --ok-button Select \
     "A1 Hostname" "Setzen Sie den sichtbaren Namen für die Pi im Netzwerk" \
@@ -474,6 +493,7 @@ while true; do
 	"8 Update" "Wolf2000-Tools Updaten" \
     "9 Resize 2" "Speicher vergößern für Images mit zwei Partionen" \
    "10 Resize 1" "Speicher vergößern für Images mit einer Partion" \
+   11 Tsest 1" "Test omv" \
     3>&1 1>&2 2>&3)
   RET=$?
   if [ $RET -eq 1 ]; then
@@ -490,6 +510,7 @@ while true; do
 	  8\ *) do_update_wolf2000 ;;
 	  9\ *) do_resize ;;
 	 10\ *) do_resizea ;;
+	 11\ *) do_Openmediavault_menu ;;
       *) whiptail --msgbox "Programmer error: unrecognized option" 20 60 1 ;;
     esac || whiptail --msgbox "There was an error running option $FUN" 20 60 1
   else
