@@ -12,7 +12,7 @@ calc_wt_size() {
   # NOTE: it's tempting to redirect stderr to /dev/null, so supress error 
   # output from tput. However in this case, tput detects neither stdout or 
   # stderr is a tty and so only gives default 80, 24 values
-  WT_HEIGHT=17
+  WT_HEIGHT=19
   WT_WIDTH=$(tput cols)
 
   if [ -z "$WT_WIDTH" ] || [ "$WT_WIDTH" -lt 60 ]; then
@@ -516,8 +516,8 @@ while true; do
 	  9\ *) do_resize ;;
 	 10\ *) do_resizea ;;
 	 11\ *) do_Openmediavault_menu ;;
-      *) whiptail --msgbox "Programmer error: unrecognized option" 20 70 1 ;;
-    esac || whiptail --msgbox "There was an error running option $FUN" 20 70 1
+      *) whiptail --msgbox "Programmer error: unrecognized option" 20 60 1 ;;
+    esac || whiptail --msgbox "There was an error running option $FUN" 20 60 1
   else
     exit 1
   fi
