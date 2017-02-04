@@ -493,7 +493,7 @@ while true; do
 	"8 Update" "Wolf2000-Tools Updaten" \
     "9 Resize 2" "Speicher vergößern für Images mit zwei Partionen" \
    "10 Resize 1" "Speicher vergößern für Images mit einer Partion" \
-   11 Tsest 1" "Test omv" \
+   "11 Tsest 1" "Test omv" \
     3>&1 1>&2 2>&3)
   RET=$?
   if [ $RET -eq 1 ]; then
