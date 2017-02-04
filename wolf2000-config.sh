@@ -394,11 +394,11 @@ do_internationalisation_menu() {
 }
 
 do_Openmediavault_menu() {
+printf "Test"
   FUN=$(whiptail --title "Banana Pi Software Configuration Tool (Wolf2000-config)" --menu "Openmediavault Optionen" $WT_HEIGHT $WT_WIDTH $WT_MENU_HEIGHT --cancel-button Back --ok-button Select \
     "O1 Openmediavault Version 2" "Installation Unter Debian Wheezy" \
     "O2 Openmediavault Version 3" "Installation Unter Debian Jessie" \
-    "O3 Openmediavault Plugins"   "openmediavault-resetperms openmediavault-locate
-	                               openmediavault-apttool openmediavault-sensors " \
+    "O3 Openmediavault Plugins"   "resetperms locate apttool sensors " \
     3>&1 1>&2 2>&3)
   RET=$?
   if [ $RET -eq 1 ]; then
