@@ -394,6 +394,12 @@ do_internationalisation_menu() {
 }
 
 do_Openmediavault_menu() {
+ whiptail --msgbox "\
+Habe mir das raspi-config hergenommen und verändert.
+Ich hoffe ihr seid zufrieden?
+Für Schäden übernehme ich Keine Haftung!
+@Wolf2000.\
+" 20 70 1
   FUN=$(whiptail --title "Banana Pi Software Configuration Tool (Wolf2000-config)" --menu "Openmediavault Optionen" $WT_HEIGHT $WT_WIDTH $WT_MENU_HEIGHT --cancel-button Back --ok-button Select \
 	"O1 Openmediavault Version 2" "Installation Unter Debian Wheezy" \
     "O2 Openmediavault Version 3" "Installation Unter Debian Jessie" \
