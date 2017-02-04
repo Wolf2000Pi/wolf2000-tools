@@ -79,7 +79,7 @@ EOF
 do_change_pass() {
   whiptail --msgbox "You will now be asked to enter a new password for the pi user" 20 60 1
   passwd root &&
-  whiptail --msgbox "Password changed successfully" 20 60 1
+  whiptail --msgbox "Passwort wurde erfolgreich geändert" 20 60 1
 }
 
 do_configure_keyboard() {
@@ -397,7 +397,8 @@ do_Openmediavault_menu() {
   FUN=$(whiptail --title "Banana Pi Software Configuration Tool (Wolf2000-config)" --menu "Openmediavault Optionen" $WT_HEIGHT $WT_WIDTH $WT_MENU_HEIGHT --cancel-button Back --ok-button Select \
     "O1 Openmediavault Version 2" "Installation Unter Debian Wheezy" \
     "O2 Openmediavault Version 3" "Installation Unter Debian Jessie" \
-    "O3 Openmediavault Plugins" "N.A." \
+    "O3 Openmediavault Plugins"   "openmediavault-resetperms openmediavault-locate
+	                               openmediavault-apttool openmediavault-sensors " \
     3>&1 1>&2 2>&3)
   RET=$?
   if [ $RET -eq 1 ]; then
@@ -406,12 +407,16 @@ do_Openmediavault_menu() {
     case "$FUN" in
       O1\ *) do_omv2 ;;
       O2\ *) do_omv3 ;;
-      O3\ *) do_configure_keyboard ;;
+      O3\ *) do_omv_plugins ;;
       *) whiptail --msgbox "Programmer error: unrecognized option" 20 60 1 ;;
     esac || whiptail --msgbox "There was an error running option $FUN" 20 60 1
   fi
 }
 
+do_omv_plugins() {
+apt-get --yes --force-yes --allow-unauthenticated install openmediavault-resetperms openmediavault-locate openmediavault-apttool openmediavault-sensors 
+exec wolf2000-config
+}
 do_advanced_menu() {
   FUN=$(whiptail --title "Banana Pi Software Configuration Tool (Wolf2000-config)" --menu "Advanced Options" $WT_HEIGHT $WT_WIDTH $WT_MENU_HEIGHT --cancel-button Back --ok-button Select \
     "A1 Hostname" "Setzen Sie den sichtbaren Namen für die Pi im Netzwerk" \
