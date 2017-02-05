@@ -389,7 +389,7 @@ do_Openmediavault_menu() {
   FUN=$(whiptail --title "Banana Pi Software Configuration Tool (Wolf2000-config)" --menu "Openmediavault Optionen" $WT_HEIGHT $WT_WIDTH $WT_MENU_HEIGHT --cancel-button Back --ok-button Select \
 	"O1 Openmediavault Version 2"     "Installation Unter Debian Wheezy" \
     "O2 Openmediavault Version 3"     "Installation Unter Debian Jessie" \
-    "O3 Openmediavault Plugins"       "resetperms locate apttool sensors " \
+    "O3 Openmediavault V3 Plugins"    "(Nur für OMV3)resetperms locate apttool sensors " \
 	"O4 Openmediavault MiniDLNA"      "Medienserver für DLNA/UPnP-Geräte" \
 	"O5 Openmediavault Remotedesktop" "Desktop XFCE (Remote Desktop)" \
     3>&1 1>&2 2>&3)
@@ -409,6 +409,7 @@ do_Openmediavault_menu() {
 }
 
 do_omv_plugins() {
+echo "deb https://dl.bintray.com/openmediavault-plugin-developers/erasmus-testing jessie main" > /etc/apt/sources.list.d/omv-extras-org.list &&
 apt-get --yes --force-yes --allow-unauthenticated install openmediavault-resetperms openmediavault-locate openmediavault-apttool openmediavault-sensors 
 exec wolf2000-config
 }
