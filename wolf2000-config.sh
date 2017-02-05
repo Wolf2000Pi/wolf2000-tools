@@ -71,13 +71,8 @@ end
 EOF
 }
 
-# $1 is 0 to disable overscan, 1 to disable it
-
-
-
-
 do_change_pass() {
-  whiptail --msgbox "You will now be asked to enter a new password for the pi user" 20 60 1
+  whiptail --msgbox "Sie werden nun aufgefordert, ein neues Passwort für den Root-Benutzer einzugeben" 20 60 1
   passwd root &&
   whiptail --msgbox "Passwort wurde erfolgreich geändert" 20 60 1
 }
@@ -146,8 +141,6 @@ do_memory_split() { # Memory Split
   fi
 }
 
-
-
 do_ssh() {
   if [ -e /var/log/regen_ssh_keys.log ] && ! grep -q "^finished" /var/log/regen_ssh_keys.log; then
     whiptail --msgbox "Initial ssh key generation still running. Please wait and try again." 20 60 2
@@ -201,7 +194,6 @@ do_devicetree() {
   fi
   whiptail --msgbox "Device Tree $TENSE $SETTING$REBOOT" 20 60 1
 }
-
 
 disable_raspi_config_at_boot() {
   if [ -e /etc/profile.d/raspi-config.sh ]; then
