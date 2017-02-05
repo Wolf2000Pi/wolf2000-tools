@@ -12,7 +12,7 @@ calc_wt_size() {
   # NOTE: it's tempting to redirect stderr to /dev/null, so supress error 
   # output from tput. However in this case, tput detects neither stdout or 
   # stderr is a tty and so only gives default 80, 24 values
-  WT_HEIGHT=19
+  WT_HEIGHT=17
   WT_WIDTH=$(tput cols)
 
   if [ -z "$WT_WIDTH" ] || [ "$WT_WIDTH" -lt 60 ]; then
@@ -499,13 +499,11 @@ while true; do
     "2 Internationalisierungsoptionen" "Sprache-Zeit-Tastatur " \
     "3 Erweiterte Optionen" "Hostname SSH Audio" \
 	"4 Update System" "Update und upgrade" \
-	"5 Openmediavault Version 2" "Installation Unter Debian Wheezy" \
-	"6 Openmediavault Version 3" "Installation Unter Debian Jessie" \
-	"7 About wolf2000-config" "Bitte Lesen" \
+    "5 Resize 2" "Speicher vergößern für Images mit zwei Partionen" \
+    "6 Resize 1" "Speicher vergößern für Images mit einer Partion" \
+    "7 Openmediavault" "Installation Unter Debian Wheezy & Jessie mit Plugins" \
 	"8 Update" "Wolf2000-Tools Updaten" \
-    "9 Resize 2" "Speicher vergößern für Images mit zwei Partionen" \
-   "10 Resize 1" "Speicher vergößern für Images mit einer Partion" \
-   "11 Openmediavault" "Test omv" \
+	"9 About wolf2000-config" "Bitte Lesen" \
     3>&1 1>&2 2>&3)
   RET=$?
   if [ $RET -eq 1 ]; then
@@ -515,14 +513,12 @@ while true; do
       1\ *) do_change_pass ;;
       2\ *) do_internationalisation_menu ;;
       3\ *) do_advanced_menu ;;
-      4\ *) do_update ;;
-	  5\ *) do_omv2 ;;
-	  6\ *) do_omv3 ;;
-	  7\ *) do_about ;;
+      4\ *) do_update ;; 	  
+	  5\ *) do_resize ;;
+	  6\ *) do_resizea ;;
+	  7\ *) do_Openmediavault_menu ;;
 	  8\ *) do_update_wolf2000 ;;
-	  9\ *) do_resize ;;
-	 10\ *) do_resizea ;;
-	 11\ *) do_Openmediavault_menu ;;
+	  9\ *) do_about ;;
       *) whiptail --msgbox "Programmer error: unrecognized option" 20 60 1 ;;
     esac || whiptail --msgbox "There was an error running option $FUN" 20 60 1
   else
