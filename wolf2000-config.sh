@@ -496,8 +496,8 @@ calc_wt_size
 while true; do
   FUN=$(whiptail --title "Banana Pi Software Configuration Tool (Wolf2000-config)" --menu "Setup Options" $WT_HEIGHT $WT_WIDTH $WT_MENU_HEIGHT --cancel-button Finish --ok-button Select \
     "1 Change User Password" "Root Password ändern" \
-    "2 Internationalisation Options" "Sprache-Zeit-Tastatur " \
-    "3 Advanced Options" "Configure advanced settings" \
+    "2 Internationalisierungsoptionen" "Sprache-Zeit-Tastatur " \
+    "3 Erweiterte Optionen" "Hostname SSH Audio" \
 	"4 Update System" "Update und upgrade" \
 	"5 Openmediavault Version 2" "Installation Unter Debian Wheezy" \
 	"6 Openmediavault Version 3" "Installation Unter Debian Jessie" \
@@ -505,7 +505,7 @@ while true; do
 	"8 Update" "Wolf2000-Tools Updaten" \
     "9 Resize 2" "Speicher vergößern für Images mit zwei Partionen" \
    "10 Resize 1" "Speicher vergößern für Images mit einer Partion" \
-   "11 Tsest 1" "Test omv" \
+   "11 Openmediavault" "Test omv" \
     3>&1 1>&2 2>&3)
   RET=$?
   if [ $RET -eq 1 ]; then
