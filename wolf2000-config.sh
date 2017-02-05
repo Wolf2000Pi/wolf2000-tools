@@ -394,16 +394,12 @@ do_internationalisation_menu() {
 }
 
 do_Openmediavault_menu() {
- whiptail --msgbox "\
-Habe mir das raspi-config hergenommen und verändert.
-Ich hoffe ihr seid zufrieden?
-Für Schäden übernehme ich Keine Haftung!
-@Wolf2000.\
-" 20 70 1
   FUN=$(whiptail --title "Banana Pi Software Configuration Tool (Wolf2000-config)" --menu "Openmediavault Optionen" $WT_HEIGHT $WT_WIDTH $WT_MENU_HEIGHT --cancel-button Back --ok-button Select \
-	"O1 Openmediavault Version 2" "Installation Unter Debian Wheezy" \
-    "O2 Openmediavault Version 3" "Installation Unter Debian Jessie" \
-    "O3 Openmediavault Plugins"   "resetperms locate apttool sensors " \
+	"O1 Openmediavault Version 2"     "Installation Unter Debian Wheezy" \
+    "O2 Openmediavault Version 3"     "Installation Unter Debian Jessie" \
+    "O3 Openmediavault Plugins"       "resetperms locate apttool sensors " \
+	"O4 Openmediavault MiniDLNA"      "Medienserver für DLNA/UPnP-Geräte" \
+	"O5 Openmediavault Remotedesktop" "Desktop XFCE (Remote Desktop)" \
     3>&1 1>&2 2>&3)
   RET=$?
   if [ $RET -eq 1 ]; then
@@ -413,6 +409,8 @@ Für Schäden übernehme ich Keine Haftung!
       O1\ *) do_omv2 ;;
       O2\ *) do_omv3 ;;
       O3\ *) do_omv_plugins ;;
+	  O4\ *) do_omv_minidlna ;;
+	  O5\ *) do_omv_remotedesktop ;;
       *) whiptail --msgbox "Programmer error: unrecognized option" 20 60 1 ;;
     esac || whiptail --msgbox "There was an error running option $FUN" 20 60 1
   fi
@@ -422,6 +420,17 @@ do_omv_plugins() {
 apt-get --yes --force-yes --allow-unauthenticated install openmediavault-resetperms openmediavault-locate openmediavault-apttool openmediavault-sensors 
 exec wolf2000-config
 }
+
+do_omv_minidlna() {
+apt-get --yes --force-yes --allow-unauthenticated install openmediavault-minidlna
+exec wolf2000-config
+}
+
+do_omv_remotedesktop() {
+apt-get --yes --force-yes --allow-unauthenticated install openmediavault-remotedesktop
+exec wolf2000-config
+}
+
 do_advanced_menu() {
   FUN=$(whiptail --title "Banana Pi Software Configuration Tool (Wolf2000-config)" --menu "Advanced Options" $WT_HEIGHT $WT_WIDTH $WT_MENU_HEIGHT --cancel-button Back --ok-button Select \
     "A1 Hostname" "Setzen Sie den sichtbaren Namen für die Pi im Netzwerk" \
