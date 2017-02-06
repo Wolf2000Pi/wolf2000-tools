@@ -412,6 +412,7 @@ do_omv_plugins() {
 echo "deb https://dl.bintray.com/openmediavault-plugin-developers/erasmus jessie main" > /etc/apt/sources.list.d/omv-extras-org.list &&
 sleep 1 &&
 echo "deb https://dl.bintray.com/openmediavault-plugin-developers/erasmus-testing jessie main" | sudo tee -a /etc/apt/sources.list.d/omv-extras-org.list &&
+apt-get update &&
 apt-get --yes --force-yes --allow-unauthenticated install openmediavault-resetperms openmediavault-locate openmediavault-apttool openmediavault-sensors 
 exec wolf2000-config
 }
