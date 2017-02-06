@@ -409,7 +409,7 @@ do_Openmediavault_menu() {
 }
 
 do_omv_plugins() {
-echo -e "deb https://dl.bintray.com/openmediavault-plugin-developers/erasmus jessie main" "deb https://dl.bintray.com/openmediavault-plugin-developers/erasmus-testing jessie main" > /etc/apt/sources.list.d/omv-extras-org.list &&
+echo "deb https://dl.bintray.com/openmediavault-plugin-developers/erasmus jessie main" > /etc/apt/sources.list.d/omv-extras-org.list &&
 sleep 1 &&
 echo -e "deb https://dl.bintray.com/openmediavault-plugin-developers/erasmus-testing jessie main" > /etc/apt/sources.list.d/omv-extras-org.list &&
 apt-get --yes --force-yes --allow-unauthenticated install openmediavault-resetperms openmediavault-locate openmediavault-apttool openmediavault-sensors 
