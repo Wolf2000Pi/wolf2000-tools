@@ -14,7 +14,7 @@ read answer
 echo     Ihre Antwort war: $answer
 # if [ "$answer" = "j" ]
 if [ "$answer" != "n" ]
- then chmod +x wolf2000-config.sh omv-install-2.x.sh omv-install-3.x.sh resize.sh resizea.sh &&
+ then chmod +x wolf2000-config.sh omv-install-2.x.sh omv-install-3.x.sh resize.sh resizea.sh nextcloud.sh &&
 sleep 1
 cp deinstall-wolf2000-tools.sh /root/ &&
 sleep 1
@@ -28,6 +28,8 @@ cp resize.sh /usr/bin/resize
 sleep 1
 cp resizea.sh /usr/bin/resizea
 sleep 1
+cp resizea.sh /usr/bin/nextcloud
+sleep 1
 cd &&
 sleep 1
 chmod +x deinstall-wolf2000-tools.sh &&
@@ -38,4 +40,4 @@ echo
 echo
 echo "   \033[32m Das wars Wolf2000-Tools\033[0m"
 else echo "   \033[31m Die Installation wurde abgebrochen\033[0m"
-fi
+fi 
