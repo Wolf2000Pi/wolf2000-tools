@@ -20,11 +20,17 @@ apt-get --yes --force-yes --allow-unauthenticated install apache2 php5 php5-gd s
 sleep 1
 service apache2 restart &&
 sleep 1
-wget https://download.nextcloud.com/server/releases/nextcloud-11.0.1.zip &&
+https://download.nextcloud.com/server/releases/nextcloud-11.0.1.zip &&
 sleep 1
 mv nextcloud-11.0.1.zip /var/www/html &&
 sleep 1
+cd /var/www/html &&
+sleep 1
 unzip -q nextcloud-11.0.1.zip &&
+sleep 1
+rm nextcloud-11.0.1.zip &&
+sleep 1
+mkdir -p /var/www/html/nextcloud/data &&
 sleep 1
 chown www-data:www-data /var/www/html/nextcloud/data &&
 sleep 1
@@ -32,9 +38,7 @@ chmod 750 /var/www/html/nextcloud/data &&
 sleep 1
 cd /var/www/html/nextcloud &&
 sleep 1
-wget http://omv-extras.org/openmediavault-omvextrasorg_latest_all3.deb &&
-sleep 1
-chown www-data:www-data config apps
+chown www-data:www-data config apps &&
 sleep 1
 init 6
 echo
