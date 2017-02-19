@@ -28,7 +28,7 @@ cp resize.sh /usr/bin/resize
 sleep 1
 cp resizea.sh /usr/bin/resizea
 sleep 1
-cp resizea.sh /usr/bin/nextcloud
+cp nextcloud.sh /usr/bin/nextcloud
 sleep 1
 cd &&
 sleep 1
