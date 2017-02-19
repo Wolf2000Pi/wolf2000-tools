@@ -428,7 +428,7 @@ exec wolf2000-config
 }
 
 do_nextcloud() {
-  nextcloud.sh
+  nextcloud
   printf "Einen Moment ich starte in 1Sek Wolf2000-config\n" &&
   sleep 1 &&
   exec wolf2000-config
