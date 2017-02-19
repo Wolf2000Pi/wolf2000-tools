@@ -427,6 +427,14 @@ apt-get --yes --force-yes --allow-unauthenticated install openmediavault-remoted
 exec wolf2000-config
 }
 
+do_nextcloud() {
+  nextcloud.sh
+  printf "Einen Moment ich starte in 1Sek Wolf2000-config\n" &&
+  sleep 1 &&
+  exec wolf2000-config
+
+}
+
 do_advanced_menu() {
   FUN=$(whiptail --title "Banana Pi Software Configuration Tool (Wolf2000-config)" --menu "Advanced Options" $WT_HEIGHT $WT_WIDTH $WT_MENU_HEIGHT --cancel-button Back --ok-button Select \
     "A1 Hostname" "Setzen Sie den sichtbaren Namen für die Pi im Netzwerk" \
@@ -508,6 +516,7 @@ while true; do
     "7 Openmediavault" "Installation Unter Debian Wheezy & Jessie mit Plugins" \
 	"8 Update" "Wolf2000-Tools Updaten" \
 	"9 About wolf2000-config" "Bitte Lesen" \
+	"10 Nextcloud" "Installation geht nicht mit OMV" \
     3>&1 1>&2 2>&3)
   RET=$?
   if [ $RET -eq 1 ]; then
@@ -523,6 +532,7 @@ while true; do
 	  7\ *) do_Openmediavault_menu ;;
 	  8\ *) do_update_wolf2000 ;;
 	  9\ *) do_about ;;
+	  10\ *) do_nextcloud ;;
       *) whiptail --msgbox "Programmer error: unrecognized option" 20 60 1 ;;
     esac || whiptail --msgbox "There was an error running option $FUN" 20 60 1
   else
