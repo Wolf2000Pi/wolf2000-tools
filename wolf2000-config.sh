@@ -30,6 +30,8 @@ Habe mir das raspi-config hergenommen und verändert.
 Ich hoffe ihr seid zufrieden?
 Für Schäden übernehme ich Keine Haftung!
 @Wolf2000.\
+Ich möchte mich für die mithilfe auch Bedanken bei 
+@a1d3s, @KrümelMonster, @The Master
 " 20 70 1
 }
 
