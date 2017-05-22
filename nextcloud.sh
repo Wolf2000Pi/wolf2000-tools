@@ -20,15 +20,15 @@ apt-get --yes --force-yes --allow-unauthenticated install apache2 php5 php5-gd s
 sleep 1
 service apache2 restart &&
 sleep 1
-wget https://download.nextcloud.com/server/releases/nextcloud-11.0.1.zip &&
+wget https://download.nextcloud.com/server/releases/latest.zip &&
 sleep 1
-mv nextcloud-11.0.1.zip /var/www/html &&
+mv latest.zip /var/www/html &&
 sleep 1
 cd /var/www/html &&
 sleep 1
-unzip -q nextcloud-11.0.1.zip &&
+unzip -q latest.zip &&
 sleep 1
-rm nextcloud-11.0.1.zip &&
+rm latest.zip &&
 sleep 1
 mkdir -p /var/www/html/nextcloud/data &&
 sleep 1
