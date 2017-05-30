@@ -394,6 +394,8 @@ do_Openmediavault_menu() {
     "O3 Openmediavault V3 Plugins"    "(Nur für OMV3)resetperms locate apttool sensors " \
 	"O4 Openmediavault MiniDLNA"      "Medienserver für DLNA/UPnP-Geräte" \
 	"O5 Openmediavault Remotedesktop" "Desktop XFCE (Remote Desktop)" \
+	"O6 Openmediavault Theme triton"  "WebUI OMV3 theme triton Neu" \
+	"O7 Openmediavault Theme gray"    "WebUI OMV3 theme gray Alt" \
     3>&1 1>&2 2>&3)
   RET=$?
   if [ $RET -eq 1 ]; then
@@ -405,9 +407,21 @@ do_Openmediavault_menu() {
       O3\ *) do_omv_plugins ;;
 	  O4\ *) do_omv_minidlna ;;
 	  O5\ *) do_omv_remotedesktop ;;
+	  O6\ *) do_omv_triton ;;
+      O7\ *) do_omv_gray ;;
       *) whiptail --msgbox "Programmer error: unrecognized option" 20 60 1 ;;
     esac || whiptail --msgbox "There was an error running option $FUN" 20 60 1
   fi
+}
+
+do_omv_triton() {
+echo 'OMV_WEBUI_THEME=triton' >> /etc/default/openmediavault
+exec wolf2000-config
+}
+
+do_omv_gray() {
+echo 'OMV_WEBUI_THEME=gray' >> /etc/default/openmediavault
+exec wolf2000-config
 }
 
 do_omv_plugins() {
@@ -493,6 +507,30 @@ do_update_wolf2000() {
   exec wolf2000-config
 }
 
+do_resize_menu() {
+  FUN=$(whiptail --title "Banana Pi Software Configuration Tool (Wolf2000-config)" --menu "Advanced Options" $WT_HEIGHT $WT_WIDTH $WT_MENU_HEIGHT --cancel-button Back --ok-button Select \
+    "R1 cfdisk"   "Um Partionen zu ändern oder Loschen" \
+    "R2 Resize 2" "Speicher vergößern für Images mit zwei Partionen" \
+    "R3 Resize 1" "Speicher vergößern für Images mit einer Partion" \
+    3>&1 1>&2 2>&3)
+  RET=$?
+  if [ $RET -eq 1 ]; then
+    return 0
+  elif [ $RET -eq 0 ]; then
+    case "$FUN" in
+      R1\ *) do_cfdisk ;;
+      R2\ *) do_resize ;;
+      R3\ *) do_resizea ;;
+      *) whiptail --msgbox "Programmer error: unrecognized option" 20 60 1 ;;
+    esac || whiptail --msgbox "There was an error running option $FUN" 20 60 1
+  fi
+}
+
+do_cfdisk() {
+cfdisk /dev/mmcblk0
+exec wolf2000-config
+}
+
 do_resize() {
 cp /root/wolf2000-tools/resize2start /etc/cron.d/
 exec resize
@@ -513,12 +551,11 @@ while true; do
     "2 Internationalisierungsoptionen" "Sprache-Zeit-Tastatur " \
     "3 Erweiterte Optionen" "Hostname SSH Audio" \
 	"4 Update System" "Update und upgrade" \
-    "5 Resize 2" "Speicher vergößern für Images mit zwei Partionen" \
-    "6 Resize 1" "Speicher vergößern für Images mit einer Partion" \
-    "7 Openmediavault" "Installation Unter Debian Wheezy & Jessie mit Plugins" \
-	"8 Update" "Wolf2000-Tools Updaten" \
-	"9 About wolf2000-config" "Bitte Lesen" \
-	"10 Nextcloud" "Installation geht nicht mit OMV" \
+    "5 Resize" "Speicher vergößern für Images mit zwei Partionen oder einer Partion" \
+    "6 Openmediavault" "Installation Unter Debian Wheezy & Jessie mit Plugins" \
+	"7 Update" "Wolf2000-Tools Updaten" \
+	"8 About wolf2000-config" "Bitte Lesen" \
+	"9 Nextcloud" "Installation geht nicht mit OMV" \
     3>&1 1>&2 2>&3)
   RET=$?
   if [ $RET -eq 1 ]; then
@@ -529,12 +566,11 @@ while true; do
       2\ *) do_internationalisation_menu ;;
       3\ *) do_advanced_menu ;;
       4\ *) do_update ;; 	  
-	  5\ *) do_resize ;;
-	  6\ *) do_resizea ;;
-	  7\ *) do_Openmediavault_menu ;;
-	  8\ *) do_update_wolf2000 ;;
-	  9\ *) do_about ;;
-	  10\ *) do_nextcloud ;;
+	  5\ *) do_resize_menu ;;
+	  6\ *) do_Openmediavault_menu ;;
+	  7\ *) do_update_wolf2000 ;;
+	  8\ *) do_about ;;
+	  9\ *) do_nextcloud ;;
       *) whiptail --msgbox "Programmer error: unrecognized option" 20 60 1 ;;
     esac || whiptail --msgbox "There was an error running option $FUN" 20 60 1
   else
