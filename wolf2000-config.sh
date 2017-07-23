@@ -396,7 +396,7 @@ do_Openmediavault_menu() {
 	"O5 Openmediavault Remotedesktop" "Desktop XFCE (Remote Desktop)" \
 	"O6 Openmediavault Theme triton"  "WebUI OMV3 theme triton Neu" \
 	"O7 Openmediavault Theme gray"    "WebUI OMV3 theme gray Alt" \
-	"O7 Openmediavault Theme black"   "WebUI OMV3 theme black" \
+	"O8 Openmediavault Theme black"   "WebUI OMV3 theme black" \
     3>&1 1>&2 2>&3)
   RET=$?
   if [ $RET -eq 1 ]; then
