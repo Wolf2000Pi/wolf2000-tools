@@ -396,6 +396,7 @@ do_Openmediavault_menu() {
 	"O5 Openmediavault Remotedesktop" "Desktop XFCE (Remote Desktop)" \
 	"O6 Openmediavault Theme triton"  "WebUI OMV3 theme triton Neu" \
 	"O7 Openmediavault Theme gray"    "WebUI OMV3 theme gray Alt" \
+	"O7 Openmediavault Theme black"   "WebUI OMV3 theme black" \
     3>&1 1>&2 2>&3)
   RET=$?
   if [ $RET -eq 1 ]; then
@@ -409,6 +410,7 @@ do_Openmediavault_menu() {
 	  O5\ *) do_omv_remotedesktop ;;
 	  O6\ *) do_omv_triton ;;
       O7\ *) do_omv_gray ;;
+	  O8\ *) do_omv_black ;;
       *) whiptail --msgbox "Programmer error: unrecognized option" 20 60 1 ;;
     esac || whiptail --msgbox "There was an error running option $FUN" 20 60 1
   fi
@@ -416,11 +418,19 @@ do_Openmediavault_menu() {
 
 do_omv_triton() {
 echo 'OMV_WEBUI_THEME=triton' >> /etc/default/openmediavault
+rm -r /var/www/openmediavault/css/theme-custom.css
 exec wolf2000-config
 }
 
 do_omv_gray() {
 echo 'OMV_WEBUI_THEME=gray' >> /etc/default/openmediavault
+rm -r /var/www/openmediavault/css/theme-custom.css
+exec wolf2000-config
+}
+
+do_omv_black() {
+echo 'OMV_WEBUI_THEME=triton' >> /etc/default/openmediavault
+cp /root/wolf2000-tools/theme-custom.css /var/www/openmediavault/css/
 exec wolf2000-config
 }
 
